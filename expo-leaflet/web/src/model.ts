@@ -52,6 +52,7 @@ export type MapLayerType =
   | 'VectorLayer'
   | 'VideoOverlay'
   | 'WMSTileLayer'
+  | 'OfflineTileLayer'
 
 export type MapMarker = {
   icon: string
@@ -60,6 +61,11 @@ export type MapMarker = {
   position: LatLngLiteral
   size?: Dimensions
   title?: string
+}
+
+export interface OfflineTileImage {
+  imageUrl: string,
+  tile: { x: number, y: number, z: number } 
 }
 
 export type MapLayer = {
@@ -74,7 +80,8 @@ export type MapLayer = {
   pane?: string
   subLayer?: string
   url?: string
-  zIndex?: number
+  zIndex?: number,
+  images?: OfflineTileImage[] 
 }
 
 type CircleShape = {

@@ -24,6 +24,7 @@ import { ExpoLeafletProps } from './ExpoLeaflet.types'
 import { MapMarkers } from './MapMarkers'
 import { MapShapes } from './MapShapes'
 import { MapLayer } from './model'
+import OfflineTileLayer, { OfflineTileLayerProps } from './OfflineTileLayer'
 
 const { BaseLayer } = LayersControl
 
@@ -32,11 +33,14 @@ interface MapLayersProps {
 }
 
 const Layer = (props: MapLayer): JSX.Element => {
+  console.log("Selecting layer :)");
   switch (props.layerType) {
     case 'ImageOverlay':
       return <ImageOverlay {...(props as ImageOverlayProps)} />
     case 'WMSTileLayer':
       return <WMSTileLayer {...(props as WMSTileLayerProps)} />
+    case 'OfflineTileLayer':
+      return <OfflineTileLayer {...(props as OfflineTileLayerProps)} />
     default:
       return <TileLayer {...(props as TileLayerProps)} />
   }
