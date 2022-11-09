@@ -23,7 +23,6 @@ class OfflineTileLayerInternal extends TileLayer {
 }
 
 const createOfflineLayer = (props: OfflineTileLayerProps, context:any ) => {
-    console.log("OFFLINE TILE LAYER CREATED");
     const instance = new OfflineTileLayerInternal("placeholder", {...props});
     instance.setImages(props.images);
     return {instance, context};

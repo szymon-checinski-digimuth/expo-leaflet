@@ -33,7 +33,6 @@ interface MapLayersProps {
 }
 
 const Layer = (props: MapLayer): JSX.Element => {
-  console.log("Selecting layer :)");
   switch (props.layerType) {
     case 'ImageOverlay':
       return <ImageOverlay {...(props as ImageOverlayProps)} />
