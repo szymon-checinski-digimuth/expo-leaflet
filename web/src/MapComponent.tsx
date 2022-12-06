@@ -114,6 +114,7 @@ export const MapComponent = (props: ExpoLeafletProps) => {
     }
   }, [props.mapCenterPosition?.lat, props.mapCenterPosition?.lng, props.zoom])
   return (
+    // @ts-ignore
     <Measure
       bounds
       onResize={(contentRect) => {
