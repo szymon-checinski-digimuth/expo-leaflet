@@ -139,7 +139,14 @@ export const MapComponent = (props: ExpoLeafletProps) => {
           {dimensions.height > 0 && (
             <MapContainer
               {...props.mapOptions}
-              ref={(map: LeafletMap) => {
+              ref={(map: LeafletMap | null) => {
+
+                if (!map) {
+                  return;
+                }
+
+                console.log("map created");
+
                 setMapRef(map)
                 map.addEventListener({
                   click: (event: LeafletMouseEvent) => {
