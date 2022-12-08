@@ -3029,10 +3029,10 @@ react-native-safe-area-context@3.2.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.2.0.tgz#06113c6b208f982d68ab5c3cebd199ca93db6941"
   integrity sha512-k2Nty4PwSnrg9HwrYeeE+EYqViYJoOFwEy9LxL5RIRfoqxAq/uQXNGwpUg2/u4gnKpBbEPa9eRh15KKMe/VHkA==
 
-react-native-webview@11.6.2:
-  version "11.6.2"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.6.2.tgz#e19b3325d6777caee29d04eb2edf9b70f0b29915"
-  integrity sha512-7e5ltLBgqt1mX0gdTTS2nFPIjfS6y300wqJ4rLWqU71lDO+8ZeayfsF5qo83qxo2Go74CtLnSeWae4pdGwUqYw==
+react-native-webview@11.25.1:
+  version "11.25.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.25.1.tgz#d33c5b1f78dc725c4151b6f5f87d195dc3a7b7f0"
+  integrity sha512-uMQYcS+gpIjTm1cHJHiEaP/X3t5gqiLDzJmrTJy2zmkH4DyVmmzHTSkXJlz2x4F0EGRSiXBjFCA8Xi9wG4+6Yg==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"

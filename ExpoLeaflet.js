@@ -91,7 +91,7 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
                 flex: 1,
             },
         ]}>
-      {webViewContent != null && (<WebView allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} containerStyle={{
+      {webViewContent != null && (<WebView allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} nestedScrollEnabled={true} containerStyle={{
                 height: "100%",
                 width: "100%",
             }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onLoadEnd={() => {

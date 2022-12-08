@@ -114,6 +114,7 @@ export const ExpoLeaflet = ({
           allowFileAccess={true}
           allowUniversalAccessFromFileURLs={true}
           allowFileAccessFromFileURLs={true}
+          nestedScrollEnabled={true}
           containerStyle={{
             height: "100%",
             width: "100%",
@@ -127,7 +128,7 @@ export const ExpoLeaflet = ({
           onLoadStart={() => {
             setLoadingHtmlFile(true);
           }}
-          onMessage={(event) => {
+          onMessage={(event: any) => {
             if (event && event.nativeEvent && event.nativeEvent.data) {
               try {
                 const message: LeafletWebViewEvent = JSON.parse(
