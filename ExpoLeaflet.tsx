@@ -108,6 +108,7 @@ export const ExpoLeaflet = ({
           flex: 1,
         },
       ]}
+      renderToHardwareTextureAndroid={true}
     >
       {webViewContent != null && (
         <WebView
@@ -115,9 +116,11 @@ export const ExpoLeaflet = ({
           allowUniversalAccessFromFileURLs={true}
           allowFileAccessFromFileURLs={true}
           nestedScrollEnabled={true}
+          renderToHardwareTextureAndroid={true}
           containerStyle={{
             height: "100%",
             width: "100%",
+            opacity: 0.99 //https://github.com/react-native-webview/react-native-webview/issues/811#issuecomment-748611465
           }}
           domStorageEnabled={true}
           javaScriptEnabled={true}

@@ -90,10 +90,11 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
                 position: "relative",
                 flex: 1,
             },
-        ]}>
-      {webViewContent != null && (<WebView allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} nestedScrollEnabled={true} containerStyle={{
+        ]} renderToHardwareTextureAndroid={true}>
+      {webViewContent != null && (<WebView allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} nestedScrollEnabled={true} renderToHardwareTextureAndroid={true} containerStyle={{
                 height: "100%",
                 width: "100%",
+                opacity: 0.99 //https://github.com/react-native-webview/react-native-webview/issues/811#issuecomment-748611465
             }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onLoadEnd={() => {
                 setLoadingHtmlFile(false);
             }} onLoadStart={() => {
