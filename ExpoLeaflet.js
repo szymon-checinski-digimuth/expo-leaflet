@@ -95,7 +95,7 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
                 height: "100%",
                 width: "100%",
                 opacity: 0.99 //https://github.com/react-native-webview/react-native-webview/issues/811#issuecomment-748611465
-            }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onLoadEnd={() => {
+            }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onContentProcessDidTerminate={() => { var _a; return (_a = webViewRef.current) === null || _a === void 0 ? void 0 : _a.reload(); }} onLoadEnd={() => {
                 setLoadingHtmlFile(false);
             }} onLoadStart={() => {
                 setLoadingHtmlFile(true);
