@@ -132,12 +132,15 @@ export const ExpoLeaflet = ({
             setWebviewReady(false);
             webViewRef.current?.reload();
             setKey(key + 1);
+            console.log("onContentProcessDidTerminate");
           }}
           onLoadEnd={() => {
             setLoadingHtmlFile(false);
+            console.log("End loading html file");
           }}
           onLoadStart={() => {
             setLoadingHtmlFile(true);
+            console.log("Start loading html file");
           }}
           onMessage={(event: any) => {
             if (event && event.nativeEvent && event.nativeEvent.data) {
