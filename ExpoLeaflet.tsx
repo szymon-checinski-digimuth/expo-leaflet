@@ -132,6 +132,7 @@ export const ExpoLeaflet = ({
             setWebviewReady(false);
             webViewRef.current?.reload();
             setKey(key + 1);
+            previousPropsRef.current = {};
             console.log("onContentProcessDidTerminate");
           }}
           onLoadEnd={() => {
