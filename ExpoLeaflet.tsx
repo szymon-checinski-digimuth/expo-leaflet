@@ -125,6 +125,7 @@ export const ExpoLeaflet = ({
           domStorageEnabled={true}
           javaScriptEnabled={true}
           ref={webViewRef}
+          onRenderProcessGone={() => webViewRef.current?.reload()}
           onContentProcessDidTerminate={() => webViewRef.current?.reload()}
           onLoadEnd={() => {
             setLoadingHtmlFile(false);
