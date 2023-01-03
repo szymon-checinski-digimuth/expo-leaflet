@@ -14,6 +14,7 @@ export const ExpoLeaflet = ({
   onMapLoad,
   ...rest
 }: ExpoLeafletProps) => {
+  const [key, setKey] = useState<number>(0);
   const mapProps: LeafletMapProps = rest;
   const webViewRef = useRef<WebView>(null!);
   const [webViewContent, setWebviewContent] = useState<string | null>();
@@ -112,6 +113,7 @@ export const ExpoLeaflet = ({
     >
       {webViewContent != null && (
         <WebView
+          key={key}
           allowFileAccess={true}
           allowUniversalAccessFromFileURLs={true}
           allowFileAccessFromFileURLs={true}
@@ -126,7 +128,11 @@ export const ExpoLeaflet = ({
           javaScriptEnabled={true}
           ref={webViewRef}
           onRenderProcessGone={() => webViewRef.current?.reload()}
-          onContentProcessDidTerminate={() => webViewRef.current?.reload()}
+          onContentProcessDidTerminate={() => {
+            setWebviewReady(false);
+            webViewRef.current?.reload();
+            setKey(key + 1);
+          }}
           onLoadEnd={() => {
             setLoadingHtmlFile(false);
           }}
