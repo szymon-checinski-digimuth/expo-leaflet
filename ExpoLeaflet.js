@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
 export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMapLoad, ...rest }) => {
     var _a;
+    const [key, setKey] = useState(0);
     const mapProps = rest;
     const webViewRef = useRef(null);
     const [webViewContent, setWebviewContent] = useState();
@@ -46,6 +47,9 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
         }
         const previousProps = previousPropsRef.current;
         const newMapProps = {};
+        if (!isEqual(mapProps.shouldFitToBounds, previousProps.shouldFitToBounds)) {
+            newMapProps.shouldFitToBounds = mapProps.shouldFitToBounds;
+        }
         if (!isEqual(mapProps.mapCenterPosition, previousProps.mapCenterPosition)) {
             newMapProps.mapCenterPosition = mapProps.mapCenterPosition;
         }
@@ -82,6 +86,7 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
         mapProps.mapShapes,
         mapProps.maxZoom,
         mapProps.zoom,
+        mapProps.shouldFitToBounds
     ]);
     return (<View style={[
             StyleSheet.absoluteFill,
@@ -91,14 +96,23 @@ export const ExpoLeaflet = ({ backgroundColor, loadingIndicator, onMessage, onMa
                 flex: 1,
             },
         ]} renderToHardwareTextureAndroid={true}>
-      {webViewContent != null && (<WebView allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} nestedScrollEnabled={true} renderToHardwareTextureAndroid={true} containerStyle={{
+      {webViewContent != null && (<WebView key={key} allowFileAccess={true} allowUniversalAccessFromFileURLs={true} allowFileAccessFromFileURLs={true} nestedScrollEnabled={true} renderToHardwareTextureAndroid={true} containerStyle={{
                 height: "100%",
                 width: "100%",
                 opacity: 0.99 //https://github.com/react-native-webview/react-native-webview/issues/811#issuecomment-748611465
-            }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onContentProcessDidTerminate={() => { var _a; return (_a = webViewRef.current) === null || _a === void 0 ? void 0 : _a.reload(); }} onLoadEnd={() => {
+            }} domStorageEnabled={true} javaScriptEnabled={true} ref={webViewRef} onRenderProcessGone={() => { var _a; return (_a = webViewRef.current) === null || _a === void 0 ? void 0 : _a.reload(); }} onContentProcessDidTerminate={() => {
+                var _a;
+                setWebviewReady(false);
+                (_a = webViewRef.current) === null || _a === void 0 ? void 0 : _a.reload();
+                setKey(key + 1);
+                previousPropsRef.current = {};
+                console.log("onContentProcessDidTerminate");
+            }} onLoadEnd={() => {
                 setLoadingHtmlFile(false);
+                console.log("End loading html file");
             }} onLoadStart={() => {
                 setLoadingHtmlFile(true);
+                console.log("Start loading html file");
             }} onMessage={(event) => {
                 if (event && event.nativeEvent && event.nativeEvent.data) {
                     try {
