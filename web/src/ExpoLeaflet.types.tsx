@@ -1,4 +1,4 @@
-import type { LatLngLiteral, MapOptions } from 'leaflet'
+import type { FitBoundsOptions, LatLngLiteral, MapOptions } from 'leaflet'
 import { ReactElement } from 'react'
 import { LeafletWebViewEvent, MapLayer, MapMarker, MapShape } from './model'
 
@@ -10,7 +10,8 @@ export type LeafletMapProps = {
   mapCenterPosition: LatLngLiteral
   zoom?: number
   maxZoom?: number,
-  shouldFitToBounds?: boolean
+  shouldFitToBounds?: boolean,
+  fitToBoundsOptions?: FitBoundsOptions
 }
 
 export type ExpoLeafletProps = LeafletMapProps & {

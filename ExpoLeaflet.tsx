@@ -62,6 +62,9 @@ export const ExpoLeaflet = ({
     if (!isEqual(mapProps.shouldFitToBounds, previousProps.shouldFitToBounds)) {
       newMapProps.shouldFitToBounds = mapProps.shouldFitToBounds;
     }
+    if (!isEqual(mapProps.fitToBoundsOptions, previousProps.fitToBoundsOptions)) {
+      newMapProps.fitToBoundsOptions = mapProps.fitToBoundsOptions;
+    }
     if (!isEqual(mapProps.mapCenterPosition, previousProps.mapCenterPosition)) {
       newMapProps.mapCenterPosition = mapProps.mapCenterPosition;
     }
@@ -100,7 +103,8 @@ export const ExpoLeaflet = ({
     mapProps.mapShapes,
     mapProps.maxZoom,
     mapProps.zoom,
-    mapProps.shouldFitToBounds
+    mapProps.shouldFitToBounds,
+    mapProps.fitToBoundsOptions
   ]);
 
   return (

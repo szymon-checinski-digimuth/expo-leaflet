@@ -131,7 +131,7 @@ export const MapComponent = (props: ExpoLeafletProps) => {
   
       const bounds = [[minLatitude, minLongitude], [maxLatitude, maxLongitude]] as LatLngBoundsLiteral;
   
-      mapRef.fitBounds(bounds);
+      mapRef.fitBounds(bounds, props.fitToBoundsOptions);
     }
 
   }, [mapRef, props.mapMarkers, props.shouldFitToBounds]);
