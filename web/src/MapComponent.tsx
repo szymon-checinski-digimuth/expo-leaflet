@@ -1,5 +1,7 @@
-import type {
+import {
+  featureGroup,
   LatLng,
+  latLngBounds,
   LatLngBoundsLiteral,
   LatLngExpression,
   LatLngLiteral,
@@ -99,8 +101,10 @@ export const MapComponent = (props: ExpoLeafletProps) => {
     onMessage,
     zoom = 13,
   } = props
-  const [dimensions, setDimensions] = useState({ height: 0, width: 0 })
-  const [mapRef, setMapRef] = useState<LeafletMap | null>(null)
+
+  const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
+  const [mapRef, setMapRef] = useState<LeafletMap | null>(null);
+
   useEffect(() => {
     if (props.mapCenterPosition || props.zoom) {
       props.onMessage({
@@ -112,7 +116,26 @@ export const MapComponent = (props: ExpoLeafletProps) => {
         props.zoom,
       )
     }
-  }, [props.mapCenterPosition?.lat, props.mapCenterPosition?.lng, props.zoom])
+  }, [props.mapCenterPosition?.lat, props.mapCenterPosition?.lng, props.zoom]);
+
+  useEffect(() => {
+    if (!mapRef) {
+      return;
+    }
+
+    if (props.mapMarkers && props.shouldFitToBounds) {
+      const maxLatitude = Math.max(...props.mapMarkers!.map(t => t.position.lat!));
+      const minLatitude = Math.min(...props.mapMarkers!.map(t => t.position.lat!));
+      const maxLongitude = Math.max(...props.mapMarkers!.map(t => t.position.lng!));
+      const minLongitude = Math.min(...props.mapMarkers!.map(t => t.position.lng!));
+  
+      const bounds = [[minLatitude, minLongitude], [maxLatitude, maxLongitude]] as LatLngBoundsLiteral;
+  
+      mapRef.fitBounds(bounds);
+    }
+
+  }, [mapRef, props.mapMarkers, props.shouldFitToBounds]);
+
   return (
     // @ts-ignore
     <Measure

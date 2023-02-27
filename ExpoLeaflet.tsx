@@ -59,6 +59,9 @@ export const ExpoLeaflet = ({
     }
     const previousProps = previousPropsRef.current;
     const newMapProps: Partial<LeafletMapProps> = {};
+    if (!isEqual(mapProps.shouldFitToBounds, previousProps.shouldFitToBounds)) {
+      newMapProps.shouldFitToBounds = mapProps.shouldFitToBounds;
+    }
     if (!isEqual(mapProps.mapCenterPosition, previousProps.mapCenterPosition)) {
       newMapProps.mapCenterPosition = mapProps.mapCenterPosition;
     }
@@ -97,6 +100,7 @@ export const ExpoLeaflet = ({
     mapProps.mapShapes,
     mapProps.maxZoom,
     mapProps.zoom,
+    mapProps.shouldFitToBounds
   ]);
 
   return (

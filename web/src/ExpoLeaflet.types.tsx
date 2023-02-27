@@ -9,7 +9,8 @@ export type LeafletMapProps = {
   mapShapes?: MapShape[]
   mapCenterPosition: LatLngLiteral
   zoom?: number
-  maxZoom?: number
+  maxZoom?: number,
+  shouldFitToBounds?: boolean
 }
 
 export type ExpoLeafletProps = LeafletMapProps & {
