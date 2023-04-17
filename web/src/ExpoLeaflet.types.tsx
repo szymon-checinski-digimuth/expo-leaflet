@@ -6,6 +6,7 @@ export type LeafletMapProps = {
   mapOptions?: MapOptions
   mapLayers: MapLayer[]
   mapMarkers?: MapMarker[]
+  markersToFit?: MapMarker[]
   mapShapes?: MapShape[]
   mapCenterPosition: LatLngLiteral
   zoom?: number

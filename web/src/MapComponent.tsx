@@ -123,18 +123,18 @@ export const MapComponent = (props: ExpoLeafletProps) => {
       return;
     }
 
-    if (props.mapMarkers && props.shouldFitToBounds) {
-      const maxLatitude = Math.max(...props.mapMarkers!.map(t => t.position.lat!));
-      const minLatitude = Math.min(...props.mapMarkers!.map(t => t.position.lat!));
-      const maxLongitude = Math.max(...props.mapMarkers!.map(t => t.position.lng!));
-      const minLongitude = Math.min(...props.mapMarkers!.map(t => t.position.lng!));
+    if ((props.markersToFit || props.mapMarkers) && props.shouldFitToBounds) {
+      const maxLatitude = Math.max(...(props.markersToFit || props.mapMarkers)!.map(t => t.position.lat!));
+      const minLatitude = Math.min(...(props.markersToFit || props.mapMarkers)!.map(t => t.position.lat!));
+      const maxLongitude = Math.max(...(props.markersToFit || props.mapMarkers)!.map(t => t.position.lng!));
+      const minLongitude = Math.min(...(props.markersToFit || props.mapMarkers)!.map(t => t.position.lng!));
   
       const bounds = [[minLatitude, minLongitude], [maxLatitude, maxLongitude]] as LatLngBoundsLiteral;
   
       mapRef.fitBounds(bounds, props.fitToBoundsOptions);
     }
 
-  }, [mapRef, props.mapMarkers, props.shouldFitToBounds]);
+  }, [mapRef, props.mapMarkers, props.markersToFit, props.shouldFitToBounds]);
 
   return (
     // @ts-ignore
