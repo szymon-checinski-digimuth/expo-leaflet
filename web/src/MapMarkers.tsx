@@ -1,7 +1,7 @@
 import type { LatLngExpression } from 'leaflet'
 import { DivIcon, divIcon } from 'leaflet'
 import * as React from 'react'
-import { LayerGroup, Marker, Popup } from 'react-leaflet'
+import { LayerGroup, Marker, Popup, Tooltip } from 'react-leaflet'
 // import MarkerClusterGroup from 'react-leaflet-markercluster'
 // import 'react-leaflet-markercluster/dist/styles.min.css'
 import { Dimensions, MapMarker as MapMarkerType } from './model'
@@ -43,6 +43,7 @@ const MapMarker = ({
       }}
     >
       {mapMarker.title && <Popup>{mapMarker.title}</Popup>}
+      {mapMarker.tooltip && <Tooltip {...mapMarker.tooltip} />}
     </Marker>
   )
 }

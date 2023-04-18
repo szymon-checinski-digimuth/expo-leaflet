@@ -10,6 +10,7 @@ import {
   PolygonProps,
   PolylineProps,
   RectangleProps,
+  TooltipProps,
 } from 'react-leaflet'
 
 export type Dimensions = [width: number, height: number]
@@ -60,7 +61,8 @@ export type MapMarker = {
   id: string
   position: LatLngLiteral
   size?: Dimensions
-  title?: string
+  title?: string,
+  tooltip?: TooltipProps
 }
 
 export interface OfflineTileImage {
