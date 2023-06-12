@@ -110,7 +110,7 @@ export const MapComponent = (props: ExpoLeafletProps) => {
       props.onMessage({
         tag: 'DebugMessage',
         message: `Flying to ${props.mapCenterPosition.lat},${props.mapCenterPosition.lng} ${props.zoom}`,
-      })
+      });
       mapRef?.flyTo(
         [props.mapCenterPosition.lat, props.mapCenterPosition.lng],
         props.zoom,
@@ -135,6 +135,11 @@ export const MapComponent = (props: ExpoLeafletProps) => {
     }
 
   }, [mapRef, props.mapMarkers, props.markersToFit, props.shouldFitToBounds]);
+
+  props.onMessage({
+    tag: 'DebugMessage',
+    message: `Rerender inside MapComponent.tsx`,
+  });
 
   return (
     // @ts-ignore

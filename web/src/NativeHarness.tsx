@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { LeafletMapProps } from './ExpoLeaflet.types'
 import { MapComponent } from './MapComponent'
 import { LeafletWebViewEvent } from './model'
@@ -21,7 +21,7 @@ export const NativeHarness = () => {
     mapShapes: [],
     maxZoom: 20,
     zoom: 6,
-  })
+  });
 
   useEffect(() => {
     const handleNativeMessage = (event: MessageEvent) => {
@@ -45,14 +45,23 @@ export const NativeHarness = () => {
       sendMessage({
         tag: 'Error',
         error: 'Unable to add window / document event listeners',
-      })
+      });
     }
     return () => {
       if (window) {
         window.removeEventListener('message', handleNativeMessage)
       }
     }
-  }, [])
+  }, []);
+
+  const onMessage = useCallback((webViewLeafletEvent: LeafletWebViewEvent) => {
+    sendMessage(webViewLeafletEvent)
+  }, []);
+
+  sendMessage({
+    tag: 'DebugMessage',
+    message: '== Rerender ==',
+  });
 
   // If we haven't received the first message from the parent,
   // dont render yet since some options can't be changed after the first render.
@@ -72,9 +81,7 @@ export const NativeHarness = () => {
       mapShapes={state.mapShapes}
       maxZoom={state.maxZoom}
       zoom={state.zoom}
-      onMessage={(webViewLeafletEvent: LeafletWebViewEvent) => {
-        sendMessage(webViewLeafletEvent)
-      }}
+      onMessage={onMessage}
     />
   )
 }
